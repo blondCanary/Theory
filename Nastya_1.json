@@ -1,0 +1,10 @@
+{
+	"name":"Natalia",
+	"surname":"Makarchuk",
+	"family":{"daughter":{"Name":"Milana",
+		"Age":3,
+	"gender":true,
+	"toys":["bike","ball","dall",{"friend":"Artem"}]}
+	}
+	}
+
