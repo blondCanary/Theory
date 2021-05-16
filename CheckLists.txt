@@ -31,7 +31,11 @@ don`t get symbols
 -Check-list:
 
 -Registeration without any credentials
--Register with
+-Register with only 'Name' field
+-Register with only 'Surname' field
+-Register with only 'Email' field
+-Register with only 'Password' field
+
 
 ======================================================================
 -Test-cases:
@@ -40,16 +44,73 @@ ID:               TС 1.1
 Title:            Registration without any credentials
 Pre-condition:    1. Open http://itcareer.pythonanywhere.com
 Step description: 1.Click 'Submit' button
-Expected result:  1.Error message is shown 'Error:Error: All fields are Required'
+Expected result:  1.Error message is shown 'Fill in all required fields'
+Actual result:    1.Error message is shown 'Error:Error: All fields are Required'
 Status:           FAILED
 ======================================================================
 ID:               TС 1.2
-Title:
-Pre-condition:
-Step-description:
-Expected result:
-Status:
+Title:            Register with only 'Name' field
+Pre-condition:    1. Open http://itcareer.pythonanywhere.com
+Step-description: 1.Enter
+                  2.Click 'Submit' button
+Expected result:  1.Error message is shown 'Fill in all required fields'
+Actual result:    1.Error message is shown 'Error:Error: All fields are Required'
+Status:           FAILED
 ======================================================================
+ID:               TС 1.3
+Title:            
+Pre-condition:    1. Open http://itcareer.pythonanywhere.com
+Step-description: 1.Enter
+                  2.Click 'Submit' button
+Expected result:  1.Error message is shown 'Fill in all required                         fields'
+Actual result:    1.Error message is shown 'Error:Error: All fields                      are Required'
+Status:           FAILED
+======================================================================
+ID:               TС 1.3
+Title:            
+Pre-condition:    1. Open http://itcareer.pythonanywhere.com
+Step-description: 1.Enter
+                  2.Click 'Submit' button
+Expected result:  1.Error message is shown 'Fill in all required                         fields'
+Actual result:    1.Error message is shown 'Error:Error: All fields                      are Required'
+Status:           FAILED
+======================================================================
+ID:               TС 1.3
+Title:            
+Pre-condition:    1. Open http://itcareer.pythonanywhere.com
+Step-description: 1.Enter
+                  2.Click 'Submit' button
+Expected result:  1.Error message is shown 'Fill in all required                         fields'
+Actual result:    1.Error message is shown 'Error:Error: All fields                      are Required'
+Status:           FAILED
+======================================================================
+ID:               TС 1.3
+Title:            
+Pre-condition:    1. Open http://itcareer.pythonanywhere.com
+Step-description: 1.Enter
+                  2.Click 'Submit' button
+Expected result:  1.Error message is shown 'Fill in all required                         fields'
+Actual result:    1.Error message is shown 'Error:Error: All fields                      are Required'
+Status:           FAILED
+======================================================================
+ID:               TС 1.3
+Title:            
+Pre-condition:    1. Open http://itcareer.pythonanywhere.com
+Step-description: 1.Enter
+                  2.Click 'Submit' button
+Expected result:  1.Error message is shown 'Fill in all required                         fields'
+Actual result:    1.Error message is shown 'Error:Error: All fields                      are Required'
+Status:           FAILED
+
+
+
+
+
+
+
+
+
+
 -Bug-reports:
 ======================================================================
 
