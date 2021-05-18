@@ -30,19 +30,19 @@ don`t get symbols
 ======================================================================
 -Check-list:
 
-1.Registeration without any credentials
+1.Registeration without any credentials+
 2.Register with only 'Name' field
- 2.1.Register with 2 latin symbols
+ 2.1.Register with 2 latin symbols+
  2.2.Register with 256 latin symbols
- 2.3.Register with 1 latin symbol
+ 2.3.Register with 1 latin symbol+
  2.4.Register with 255 latin symbols
  2.5.Register with 257 latin symbols
- 2.6.Register with 'Евгений' cyrrilic symbols
+ 2.6.Register with 'Евгений' cyrrilic symbols+
  2.7.Register with '2Anastasiya' name
- 2.8.
--Register with only 'Surname' field
--Register with only 'Email' field
--Register with only 'Password' field
+3.Register with only 'Surname' field
+4.Register with only 'Email' field
+ 4.1.
+5.Register with only 'Password' field
 
 
 ======================================================================
@@ -56,40 +56,44 @@ Expected result:  1.Error message is shown 'Fill in all required fields'
 Actual result:    1.Error message is shown 'Error:Error: All fields are Required'
 Status:           FAILED
 ======================================================================
-ID:               TС 2
+ID:               TС 2.1
 Title:            Register with only 'Name' field
 Pre-condition:    1. Open http://itcareer.pythonanywhere.com
-Step-description: 1.Enter 
+Step-description: 1.Enter 'NA' symbols
                   2.Click 'Submit' button
 Expected result:  1.Error message is shown 'Fill in all required fields'
 Actual result:    1.Error message is shown 'Error:Error: All fields are Required'
 Status:           FAILED
 ======================================================================
-ID:               TС 1.3
-Title:            
+ID:               TС 2.2
+Title:            Register with 256 latin symbols
 Pre-condition:    1. Open http://itcareer.pythonanywhere.com
-Step-description: 1.Enter
+Step-description: 1.Enter                     'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn' symbols
                   2.Click 'Submit' button
-Expected result:  1.Error message is shown 'Fill in all required                         fields'
-Actual result:    1.Error message is shown 'Error:Error: All fields                      are Required'
+Expected result:  1.Error message is shown 'Fill in all required fields'
+Actual result:    1.Error message is shown 'Error:Error: All fields are Required'
 Status:           FAILED
 ======================================================================
-ID:               TС 1.3
-Title:            
+ID:               TС 2.3
+Title:            Register with 1 latin symbol
 Pre-condition:    1. Open http://itcareer.pythonanywhere.com
-Step-description: 1.Enter
+Step-description: 1.Enter 'N' symbol
                   2.Click 'Submit' button
-Expected result:  1.Error message is shown 'Fill in all required                         fields'
-Actual result:    1.Error message is shown 'Error:Error: All fields                      are Required'
+Expected result:  1.Field indicated with red color
+                  2.'Name must contain atleast 2 latin symbols' is shown
+                  3.Error message is shown 'Fill in all required fields'
+Actual result:    1.Error message is shown 'Error:Error: All fields are Required'
 Status:           FAILED
 ======================================================================
-ID:               TС 1.3
-Title:            
+ID:               TС 2.6
+Title:            Register with 'Евгений' cyrrilic symbols
 Pre-condition:    1. Open http://itcareer.pythonanywhere.com
-Step-description: 1.Enter
+Step-description: 1.Enter 'Евгений' cyrrilic symbols
                   2.Click 'Submit' button
-Expected result:  1.Error message is shown 'Fill in all required                         fields'
-Actual result:    1.Error message is shown 'Error:Error: All fields                      are Required'
+Expected result:  1.Field indicated with red color
+                  2.'Name must contain only latin symbols' is shown
+                  3.Error message is shown 'Fill in all required fields'
+Actual result:    1.Error message is shown 'Error:Error: All fields are Required'
 Status:           FAILED
 ======================================================================
 ID:               TС 1.3
