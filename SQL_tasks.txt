@@ -158,3 +158,82 @@ WHERE c.numGuns >= 10
 Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести: HD
 
 Ответ:
+
+SELECT hd 
+FROM pc 
+GROUP BY (hd) 
+HAVING COUNT(model) >= 2
+====================================================================
+Задание: 16
+
+Найдите пары моделей PC, имеющих одинаковые скорость и RAM. В результате каждая пара указывается только один раз, т.е. (i,j), но не (j,i), Порядок вывода: модель с большим номером, модель с меньшим номером, скорость и RAM.
+
+Ответ:
+
+SELECT DISTINCT p1.model, p2.model, p1.speed, p1.ram
+FROM pc p1, pc p2
+WHERE p1.speed = p2.speed AND p1.ram = p2.ram AND p1.model > p2.model
+====================================================================
+Задание: 17
+
+Найдите модели ПК-блокнотов, скорость которых меньше скорости каждого из ПК.
+Вывести: type, model, speed
+
+Ответ:
+
+SELECT DISTINCT p.type,p.model,l.speed
+FROM laptop l
+JOIN product p ON l.model=p.model
+WHERE l.speed<(select min(speed)from pc)
+====================================================================
+Задание: 18
+
+Найдите производителей самых дешевых цветных принтеров. Вывести: maker, price
+
+Ответ:
+
+SELECT DISTINCT product.maker, printer.price
+FROM product, printer
+WHERE product.model = printer.model
+AND printer.color = 'y'
+AND printer.price = (
+SELECT MIN(price) FROM printer
+WHERE printer.color = 'y')
+====================================================================
+Задание: 19
+
+Для каждого производителя, имеющего модели в таблице Laptop, найдите средний размер экрана выпускаемых им ПК-блокнотов.
+Вывести: maker, средний размер экрана.
+
+Ответ:
+
+SELECT
+product.maker, AVG(screen)
+FROM laptop
+LEFT JOIN product ON product.model = laptop.model
+GROUP BY product.maker
+====================================================================
+Задание: 20
+
+Найдите производителей, выпускающих по меньшей мере три различных модели ПК. Вывести: Maker, число моделей ПК.
+
+Ответ:
+
+SELECT maker, COUNT(model)
+FROM product
+WHERE type = 'pc'
+GROUP BY product.maker
+HAVING COUNT (DISTINCT model) >= 3
+====================================================================
+Задание: 21
+
+Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC.
+Вывести: maker, максимальная цена.
+
+Ответ:
+
+SELECT product.maker, MAX(pc.price)
+FROM product, pc
+WHERE product.model = pc.model
+GROUP BY product.maker
+====================================================================
