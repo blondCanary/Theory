@@ -237,3 +237,159 @@ FROM product, pc
 WHERE product.model = pc.model
 GROUP BY product.maker
 ====================================================================
+Задание: 22
+
+Для каждого значения скорости ПК, превышающего 600 МГц, определите среднюю цену ПК с такой же скоростью. Вывести: speed, средняя цена.
+
+Ответ:
+
+SELECT pc.speed, AVG(pc.price)
+FROM pc
+WHERE pc.speed > 600
+GROUP BY pc.speed
+====================================================================
+Задание: 23
+
+Найдите производителей, которые производили бы как ПК
+со скоростью не менее 750 МГц, так и ПК-блокноты со скоростью не менее 750 МГц.
+Вывести: Maker
+
+Ответ:
+
+SELECT DISTINCT maker
+FROM product t1 JOIN pc t2 ON t1.model=t2.model
+WHERE speed>=750 AND maker IN
+( SELECT maker
+FROM product t1 JOIN laptop t2 ON t1.model=t2.model
+WHERE speed>=750 )
+====================================================================
+Задание: 24
+
+Перечислите номера моделей любых типов, имеющих самую высокую цену по всей имеющейся в базе данных продукции.
+
+Ответ:
+
+SELECT model
+FROM (
+ SELECT model, price
+ FROM pc
+ UNION
+ SELECT model, price
+ FROM Laptop
+ UNION
+ SELECT model, price
+ FROM Printer
+) t1
+WHERE price = (
+ SELECT MAX(price)
+ FROM (
+  SELECT price
+  FROM pc
+  UNION
+  SELECT price
+  FROM Laptop
+  UNION
+  SELECT price
+  FROM Printer
+  ) t2
+ )
+====================================================================
+Задание: 25
+
+Найдите производителей принтеров, которые производят ПК с наименьшим объемом RAM и с самым быстрым процессором среди всех ПК, имеющих наименьший объем RAM. Вывести: Maker
+
+Ответ:
+
+SELECT DISTINCT maker
+FROM product
+WHERE model IN (
+SELECT model
+FROM pc
+WHERE ram = (
+  SELECT MIN(ram)
+  FROM pc
+  )
+AND speed = (
+  SELECT MAX(speed)
+  FROM pc
+  WHERE ram = (
+   SELECT MIN(ram)
+   FROM pc
+   )
+  )
+)
+AND
+maker IN (
+SELECT maker
+FROM product
+WHERE type='printer'
+)
+====================================================================
+Задание: 26
+
+Найдите среднюю цену ПК и ПК-блокнотов, выпущенных производителем A (латинская буква). Вывести: одна общая средняя цена.
+
+Ответ:
+
+SELECT sum(s.price)/sum(s.kol) as sredn FROM
+(SELECT price,1 as kol FROM pc,product
+ WHERE pc.model=product.model AND product.maker='A'
+UNION all
+ SELECT price,1 as kol FROM laptop,product
+ WHERE laptop.model=product.model AND product.maker='A') as s
+====================================================================
+Задание: 27
+
+Найдите средний размер диска ПК каждого из тех производителей, которые выпускают и принтеры. Вывести: maker, средний размер HD.
+
+Ответ:
+
+SELECT product.maker, AVG(pc.hd)
+FROM pc, product WHERE product.model = pc.model
+AND product.maker IN ( SELECT DISTINCT maker
+FROM product
+WHERE product.type = 'printer')
+GROUP BY maker
+====================================================================
+Задание: 28
+
+Используя таблицу Product, определить количество производителей, выпускающих по одной модели.
+
+Ответ:
+
+select count(maker)
+from product
+where maker in
+(
+  Select maker from product
+  group by maker
+  having count(model) = 1
+)
+====================================================================
+Задание: 29
+
+В предположении, что приход и расход денег на каждом пункте приема фиксируется не чаще одного раза в день [т.е. первичный ключ (пункт, дата)], написать запрос с выходными данными (пункт, дата, приход, расход). Использовать таблицы Income_o и Outcome_o.
+
+Ответ:
+
+SELECT t1.point, t1.date, inc, out
+FROM income_o t1 LEFT JOIN outcome_o t2 ON t1.point = t2.point
+AND t1.date = t2.date
+UNION
+SELECT t2.point, t2.date, inc, out
+FROM income_o t1 RIGHT JOIN outcome_o t2 ON t1.point = t2.point
+AND t1.date = t2.date
+====================================================================
+Задание: 30
+
+В предположении, что приход и расход денег на каждом пункте приема фиксируется произвольное число раз (первичным ключом в таблицах является столбец code), требуется получить таблицу, в которой каждому пункту за каждую дату выполнения операций будет соответствовать одна строка.
+Вывод: point, date, суммарный расход пункта за день (out), суммарный приход пункта за день (inc). Отсутствующие значения считать неопределенными (NULL).
+
+Ответ:
+
+select point, date, SUM(sum_out), SUM(sum_inc)
+from( select point, date, SUM(inc) as sum_inc, null as sum_out from Income Group by point, date
+Union
+select point, date, null as sum_inc, SUM(out) as sum_out from Outcome Group by point, date ) as t
+group by point, date order by point
+====================================================================
