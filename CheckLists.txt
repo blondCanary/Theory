@@ -40,6 +40,13 @@ don`t get symbols
  2.6.Register with 'Евгений' cyrrilic symbols+
  2.7.Register with '2Anastasiya' name
 3.Register with only 'Surname' field
+ 3.1.Register with 2 latin symbols+
+ 3.2.Register with 256 latin symbols
+ 3.3.Register with 1 latin symbol+
+ 3.4.Register with 255 latin symbols
+ 3.5.Register with 257 latin symbols
+ 3.6.Register with 'Евгений' cyrrilic symbols+
+ 3.7.Register with '2Anastasiya' name
 4.Register with only 'Email' field
  4.1.
 5.Register with only 'Password' field
